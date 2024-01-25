@@ -1,5 +1,6 @@
 'use strict';
- const examplePlant = {
+
+const examplePlant = {
     name: 'Daisy',
     species: 'flower',
     waterSchedule: {
@@ -7,7 +8,7 @@
         per: "day"
     },
  }// Example plant data may not be accurate.
- const plants = [];
+let plants = [];//Array to hold plant entries
 plants.push(examplePlant);
 function displayPlants(){
     const plantList = document.getElementById('plant-list');
@@ -15,11 +16,13 @@ function displayPlants(){
     plants.forEach((plant) => {
         const li = document.createElement('li');
         li.innerHTML = `<p>Name: ${plant.name}</p>
-        <p>Name: ${plant.species}</p>
-        <p>WaterSchedule: Times: ${plant.waterSchedule.times} Per: ${plant.waterSchedule.per}</p>`;
+        <p>Species: ${plant.species}</p>
+        <p>WaterSchedule: </p>
+        <p>Times: ${plant.waterSchedule.times} Per: ${plant.waterSchedule.per}</p>`;
         plantList.appendChild(li);  
     });
 }
+loadLocalStorage();
 displayPlants();
 function addPlant(name, species, waterScheduleTimes, waterSchedulePer){
     const waterSchedule = {
@@ -27,11 +30,16 @@ function addPlant(name, species, waterScheduleTimes, waterSchedulePer){
         per: waterSchedulePer,
     };
     const newPlant = {name, species, waterSchedule};
+
     plants.push(newPlant);
+    const plantsToStore = JSON.stringify(plants);
+    localStorage.setItem('plants', plantsToStore);
 }
 const form = document.getElementById('plant-form');
+const form2 = document.getElementById('plant-removal-form');
 function addPlantFromForm(e){
     e.preventDefault();
+    console.log("added Plant");
     const name = form.name.value;
     const species = form.species.value;
     const waterScheduleTimes = form.waterTimes.value;
@@ -40,22 +48,24 @@ function addPlantFromForm(e){
     displayPlants();
     form.reset();
 }
-function removePlant(plantIndex){    
-    plants.slice(plantIndex);
-    displayPlants();
-}
 function removePlantFromForm(e){
     e.preventDefault();
-    let numberToRemove = form2.numberToRemove.value;
-    numberToRemove -= 1;
-    if (numberToRemove<=plants.length){
-        removePlant(numberToRemove);
-        displayPlants();
-    } else {
-        window.alert("No plant at that number. Plant numbers start at 1. Please choose a number equal to the plant you want to remove.")
+    let plantToRemove = form2.plantNameToRemove.value;
+    for(let i = 0; i<plants.length; i++){
+        if (plants[i].name===plantToRemove){
+                plants.splice(i, 1);
+                const plantsToStore = JSON.stringify(plants);
+            localStorage.setItem('plants', plantsToStore);
+        } 
     }
+    displayPlants();
     form2.reset();
 }
-const form2 = document.getElementById('plantRemoval');
 form2.addEventListener('submit', removePlantFromForm);
 form.addEventListener('submit', addPlantFromForm);
+function loadLocalStorage(){
+    let plantData = JSON.parse(localStorage.getItem('plants'));
+    if(plantData) {
+        plants = plantData;
+    }    
+}
