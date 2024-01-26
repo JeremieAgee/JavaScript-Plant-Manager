@@ -10,6 +10,7 @@
     <header>
         <h1>Plant Manager</h1>
     </header>
+    
     <main>
         <h2>Let's Get Started</h2>
         <p>Bellow is a form you can fill out to add plants to the list. The initial is unordered with the option to sort the list</p>
@@ -44,10 +45,11 @@
                         <input 
                             type="number"  
                             name="waterTimes"
-                            placeholder="Enter how many times to water plant"
-                            aria-placeholder="Enter how many times to water plant"  
+                            placeholder="Enter times to water plant"
+                            aria-placeholder="Enter times to water plant"  
                             required
-                            min = 1>
+                            min = 1
+                            max = 5>
                 </label>
                 </div>
                 <div class="form-group">
@@ -66,14 +68,20 @@
             <form name="plant-removal-form" id="plant-removal-form">
                 <label for="plantNameToRemove">
                     Name a plant to remove:
-                    <input type="text" name="plantNameToRemove" id="plantNameToRemove">
-                <button type="submit">Remove</button>
+                    <input 
+                        type="text" 
+                        name="plantNameToRemove" 
+                        id="plantNameToRemove"
+                        placeholder="Enter name of plant to remove."
+                        aria-placeholder="Enter name of plant to remove.">
+                    <button type="submit">Remove</button>
                 </label>
             </form>
         <ul id="plant-list">
 
         </ul>
     </main>
+
     <footer>
 
     </footer>

@@ -17,8 +17,9 @@ function displayPlants(){
         const li = document.createElement('li');
         li.innerHTML = `<p>Name: ${plant.name}</p>
         <p>Species: ${plant.species}</p>
-        <p>WaterSchedule: </p>
-        <p>Times: ${plant.waterSchedule.times} Per: ${plant.waterSchedule.per}</p>`;
+        <p id="waterSchedule">WaterSchedule: </p>
+        <p id="times">Times: ${plant.waterSchedule.times}</p>
+        <p id="per"> Per: ${plant.waterSchedule.per}</p>`;
         plantList.appendChild(li);  
     });
 }

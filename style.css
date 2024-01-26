@@ -2,6 +2,19 @@
     margin-top: 0%;
     margin-bottom: 0%;
 }
+#header{
+}
 body{
-    text-align: center;
+    display: flex;
+}
+#times{
+    margin-top: 0;
+    margin-bottom: 0;
+}
+#per{
+    margin-top: 0;
+}
+#waterSchedule{
+    margin-bottom: 0;
+    
 }
