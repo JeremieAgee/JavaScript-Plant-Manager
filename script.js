@@ -2,7 +2,7 @@
 
 const examplePlant = {
 	name: "Daisy",
-	species: "flower",
+	species: "Flower",
 	waterSchedule: {
 		times: 2,
 		per: "day",
@@ -26,6 +26,7 @@ form.onsubmit = addPlantFromForm;
 
 loadLocalStorage();
 displayPlants();
+
 function sortBySpecies() {
 	if (s % 2 === 0) {
 		plants.sort((a, b) => {
@@ -51,6 +52,7 @@ function sortBySpecies() {
 	displayPlants();
 	s++;
 }
+
 function sortByName() {
 	if (n % 2 === 0) {
 		plants.sort((a, b) => {
@@ -76,6 +78,7 @@ function sortByName() {
 	displayPlants();
 	n++;
 }
+
 function displayPlants() {
 	let plantsToStore = JSON.stringify(plants);
 	localStorage.setItem("plants", plantsToStore);
@@ -87,7 +90,6 @@ function displayPlants() {
 		if (plant.waterSchedule.times === "1") {
 			timer = "time";
 		}
-
 		li.innerHTML = `<p>Name: ${plant.name}</p>
         <p>Species: ${plant.species}</p>
         <p id="waterSchedule">WaterSchedule: </p>
@@ -143,12 +145,9 @@ function removePlantFromForm(e) {
 	for (let i = 0; i < plants.length; i++) {
 		if (plants[i].name.toLocaleLowerCase() === plantToRemove) {
 			plants.splice(i, 1);
-			let plantsToStore = JSON.stringify(plants);
-			localStorage.setItem("plants", plantsToStore);
 		} else if (
 			i === plants.length - 1 &&
-			plants[i].name.toLocaleLowerCase() !== plantToRemove
-		) {
+			plants[i].name.toLocaleLowerCase() !== plantToRemove) {
 			window.alert("Plant not listed");
 		}
 	}

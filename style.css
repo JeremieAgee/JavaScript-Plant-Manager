@@ -17,3 +17,9 @@ body {
 #waterSchedule {
 	margin-bottom: 0;
 }
+.btn{
+    border-color: purple;
+    color: purple;
+    background-color: aqua;
+    border-radius: 6px;  
+}
