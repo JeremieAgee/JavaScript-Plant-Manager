@@ -30,10 +30,11 @@ function addPlant(name, species, waterScheduleTimes, waterSchedulePer){
         times: waterScheduleTimes,
         per: waterSchedulePer,
     };
-    const newPlant = {name, species, waterSchedule};
+    console.log(name);
+    let newPlant = {name, species, waterSchedule};
 
     plants.push(newPlant);
-    const plantsToStore = JSON.stringify(plants);
+    let plantsToStore = JSON.stringify(plants);
     localStorage.setItem('plants', plantsToStore);
 }
 const form = document.getElementById('plant-form');
@@ -41,22 +42,31 @@ const form2 = document.getElementById('plant-removal-form');
 function addPlantFromForm(e){
     e.preventDefault();
     console.log("added Plant");
-    const name = form.name.value;
-    const species = form.species.value;
+    format();
+    let nameValue = form.name.value;
+    const name = nameValue.charAt(0).toUpperCase() + nameValue.slice(1).toLocaleLowerCase();
+    let speciesValue = form.species.value;
+    const species = speciesValue.charAt(0).toUpperCase() + speciesValue.slice(1).toLocaleLowerCase();
     const waterScheduleTimes = form.waterTimes.value;
     const waterSchedulePer = form.waterPer.value;
+    
     addPlant(name, species, waterScheduleTimes, waterSchedulePer);
     displayPlants();
     form.reset();
+}
+function format(){
+    for(let i = 0; i<plants.length; i++){
+        plants[i].name[0].toLocaleUpperCase();
+    }
 }
 function removePlantFromForm(e){
     e.preventDefault();
     let plantToRemove = form2.plantNameToRemove.value;
     for(let i = 0; i<plants.length; i++){
-        if (plants[i].name===plantToRemove){
+        if (plants[i].name.toLocaleLowerCase()===plantToRemove){
                 plants.splice(i, 1);
-                const plantsToStore = JSON.stringify(plants);
-            localStorage.setItem('plants', plantsToStore);
+                let plantsToStore = JSON.stringify(plants);
+                localStorage.setItem('plants', plantsToStore);
         } 
     }
     displayPlants();
