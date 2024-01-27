@@ -1,18 +1,19 @@
-#schedule-label{
-    margin-top: 0%;
-    margin-bottom: 0%;
+#schedule-label {
+	margin-top: 0%;
+	margin-bottom: 0%;
 }
-body{
-    display: flex;
+body {
+	color: purple;
+	background-color: aquamarine;
+	display: flex;
 }
-#times{
-    margin-top: 0;
-    margin-bottom: 0;
+#times {
+	margin-top: 0;
+	margin-bottom: 0;
 }
-#per{
-    margin-top: 0;
+#per {
+	margin-top: 0;
 }
-#waterSchedule{
-    margin-bottom: 0;
-    
+#waterSchedule {
+	margin-bottom: 0;
 }
